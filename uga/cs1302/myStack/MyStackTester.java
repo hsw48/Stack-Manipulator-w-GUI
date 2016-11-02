@@ -7,9 +7,10 @@ import org.junit.Test;
 
 public class MyStackTester {
 
+	public Stack<String> myStack = new Stack<>();
+	
 	@Test
 	public void testPush() {
-		Stack<String> myStack = new Stack<>();
 		myStack.push("1");
 		myStack.push("2");
 		assertEquals(myStack.pop(),"2");
@@ -17,7 +18,6 @@ public class MyStackTester {
 	
 	@Test
 	public void testPop() {
-		Stack<String> myStack = new Stack<>();
 		myStack.push("1");
 		myStack.push("2");
 		assertEquals(myStack.pop(), "2");

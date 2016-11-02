@@ -8,31 +8,55 @@ public class Stack<T> implements StackADT<T> {
 	public final int DEFAULT_CAPACITY = 10;
 	
 	public Stack(int capacity){
+		top = -1;
 		stack = (T[]) new Object[capacity];
 	}
 	
 	public Stack(){
+		top = -1;
 		stack = (T[]) new Object[DEFAULT_CAPACITY];
 	}
 	
 	@Override
-	public  void push(T element)
-	{
-		stack[top + 1] = element;
-		top ++;
+	public  void push(T element) 
+	{ 
+		try
+		{
+			stack[top + 1] = element;
+			top ++;
+		} catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
 	}
 	
 	@Override
 	public T pop()
 	{
-		T element = stack[top];
-		top--;
-		return element;
+		try
+		{
+			T element = stack[top];
+			stack[top] = null;
+			top--;
+			return element;
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.print(e.getMessage());
+		}
+		
+		
+		
 	}
 	
 	@Override
-	public T peek()
+	public T peek() throws EmptyStackException
 	{
+		if (isEmpty()) 
+		{
+			throw new EmptyStackException();
+		}
 		return stack[top];
 	}
 	
@@ -40,13 +64,13 @@ public class Stack<T> implements StackADT<T> {
 	public boolean isEmpty()
 	{
 		return top == -1;
+	
 	}
 	
 	@Override
 	public boolean isFull()
 	{
 		return top + 1 == stack.length;
-		
 	}
 	
 	@Override
@@ -65,7 +89,11 @@ public class Stack<T> implements StackADT<T> {
 	
 	@Override
 	public String toString(){
-		return stack.toString();
+		String a = "";
+		for (T element : stack) {
+			a = a + element + ", ";
+		}
+		return a;
 	}
 
 }
