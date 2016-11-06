@@ -1,30 +1,34 @@
 package uga.cs1302.myStack;
 
+import uga.cs1302.myStack.EmptyStackException;
+import uga.cs1302.myStack.FullStackException;
+
 /**
- * * Defines the interface to a stack collection.
+ * Defines the interface to a stack collection.
  * 
  * @author Harrison Woodward
+ * 
  */
 public interface StackADT<T> 
 {
 	/**  
 	 * Adds the specified element to the top of this stack. 
 	 * @param element element to be pushed onto the stack
-	 * @throws FullStackException 
+	 * throws FullStackException 
 	 */
 	public void push(T element) throws FullStackException;
 	
 	/**  
 	 * Removes and returns the top element from this stack. 
 	 * @return the element removed from the stack
-	 * @throws EmptyStackException 
+	 * throws EmptyStackException 
 	 */
 	public T pop() throws EmptyStackException;
 	
 	/**  
 	 * Returns without removing the top element of this stack. 
 	 * @return the element on top of the stack
-	 * @throws EmptyStackException 
+	 * throws EmptyStackException 
 	 */
 	public T peek() throws EmptyStackException;
 	

@@ -5,7 +5,7 @@ import java.util.*;
 public class Stack<T> implements StackADT<T> {
 	private T[] stack;
 	private int top = -1;
-	public final int DEFAULT_CAPACITY = 10;
+	public final int DEFAULT_CAPACITY = 100;
 	
 	public Stack(int capacity){
 		top = -1;
@@ -16,82 +16,78 @@ public class Stack<T> implements StackADT<T> {
 		top = -1;
 		stack = (T[]) new Object[DEFAULT_CAPACITY];
 	}
-	
-	@Override
+
 	public  void push(T element) 
 	{ 
 		try
 		{
-			stack[top + 1] = element;
 			top ++;
+			stack[top] = element;
 		} catch(ArrayIndexOutOfBoundsException e)
 		{
-			System.out.println(e.getMessage());
+			throw new FullStackException("Stack is full.");
 		}
 		
 	}
 	
-	@Override
+
 	public T pop()
 	{
+		T element = null;
 		try
 		{
-			T element = stack[top];
+			element = (T) stack[top];
 			stack[top] = null;
 			top--;
 			return element;
-		}
-		catch(ArrayIndexOutOfBoundsException e)
+		} 
+		catch (ArrayIndexOutOfBoundsException e)
 		{
-			System.out.print(e.getMessage());
-		}
-		
-		
-		
+			throw new EmptyStackException("Stack is empty.");
+		}		
 	}
 	
-	@Override
-	public T peek() throws EmptyStackException
+	public T peek() 
 	{
-		if (isEmpty()) 
+		try
 		{
-			throw new EmptyStackException();
+			return (T)stack[top];
 		}
-		return stack[top];
+		catch (ArrayIndexOutOfBoundsException e)
+		{
+		
+			throw new EmptyStackException("Stack is empty.");
+		}
+		
 	}
 	
-	@Override
+	
 	public boolean isEmpty()
 	{
 		return top == -1;
 	
 	}
-	
-	@Override
+
 	public boolean isFull()
 	{
 		return top + 1 == stack.length;
 	}
-	
-	@Override
+
 	public int size()
 	{
 		int count = 0;
-		for (T t : stack) 
+		for (Object t : stack) 
 		{
-			if (t != null) 
-			{
+			
 				count++;
-			}
 		}
 		return count;
 	}
 	
-	@Override
 	public String toString(){
 		String a = "";
-		for (T element : stack) {
-			a = a + element + ", ";
+		for (Object element : stack) {
+			a = a + element + " ";
 		}
 		return a;
 	}

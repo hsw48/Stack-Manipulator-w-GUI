@@ -1,6 +1,6 @@
 package uga.cs1302.myStack;
 
-public class EmptyStackException extends Exception {
+public class EmptyStackException extends RuntimeException {
 
 	public EmptyStackException() {}
 	
