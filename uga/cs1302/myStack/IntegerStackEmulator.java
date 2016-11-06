@@ -117,7 +117,8 @@ public class IntegerStackEmulator extends JFrame implements ActionListener {
 			}
 			else if  (e.getSource() == popButton)
 			{
-					stack.pop();	
+				String popped = stack.pop();	
+					numberTextField.setText(popped);
 					stackTextArea.setText(stack.toString());
 			}
 			else if (e.getSource() == sizeButton)
