@@ -25,11 +25,10 @@ public class Stack<T> implements StackADT<T> {
 			stack[top] = element;
 		} catch(ArrayIndexOutOfBoundsException e)
 		{
-			throw new FullStackException("Stack is full.");
+			throw new FullStackException(/*"Stack is full."*/);
 		}
 		
 	}
-	
 
 	public T pop()
 	{
@@ -43,7 +42,7 @@ public class Stack<T> implements StackADT<T> {
 		} 
 		catch (ArrayIndexOutOfBoundsException e)
 		{
-			throw new EmptyStackException("Stack is empty.");
+			throw new EmptyStackException(/*"Stack is empty."*/);
 		}		
 	}
 	
@@ -56,16 +55,14 @@ public class Stack<T> implements StackADT<T> {
 		catch (ArrayIndexOutOfBoundsException e)
 		{
 		
-			throw new EmptyStackException("Stack is empty.");
+			throw new EmptyStackException(/*"Stack is empty."*/);
 		}
 		
 	}
 	
-	
 	public boolean isEmpty()
 	{
 		return top == -1;
-	
 	}
 
 	public boolean isFull()
